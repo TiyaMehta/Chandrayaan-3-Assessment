@@ -3,11 +3,11 @@ package chandrayaan3;
 
 public class SpaceCraftControl {
 	
-	static int coord[] = new int[3];
-	static char initial_direction;
-	static char commands[]= new char[10];
-	static int i;
-	public static int[] enterCoordinates(int x, int y, int z) {
+	 int coord[] = new int[3];
+	 char initial_direction;
+	 char commands[]= new char[10];
+	 int i;
+	public  int[] enterCoordinates(int x, int y, int z) {
 		coord[0] = x;
 		coord[1] = y;
 		coord[2] = z;
@@ -15,20 +15,20 @@ public class SpaceCraftControl {
 		return coord;
 	}
 	
-	public static char initialDirection(String direction) {
+	public  char initialDirection(String direction) {
 		initial_direction = direction.toUpperCase().charAt(0);
 		//System.out.println("Initial Direction:" + initial_direction);
 		return initial_direction;
 	}
 	
-	public static char commands(String str) {
+	public char commands(String str) {
 		commands[i]=str.charAt(0);
 		//System.out.println(i + " " + commands[i]);
 		i++;
 		return commands[i-1];
 	}
 	
-	public static void translateCommand() {
+	public void translateCommand() {
 		int result=0,k=0,count=0;
 		coord = enterCoordinates(0,0,0);
 		initial_direction = initialDirection("North");
