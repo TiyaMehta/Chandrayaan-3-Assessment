@@ -17,7 +17,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-@DisplayName("Chandrayaan-3")
+@DisplayName("Chandrayaan-3 Commands")
 class SpaceCraftControlTest {
 	
 	SpaceCraftControl scc;
@@ -219,7 +219,5 @@ class SpaceCraftControlTest {
 			assertEquals('l',scc.commands("left"),()->"should be valid");
 			assertEquals('r',scc.commands("right"),()->"should be valid");
 		}
- }
-	
-	
+   }	
 }
