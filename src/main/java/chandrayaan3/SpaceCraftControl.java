@@ -22,16 +22,20 @@ public class SpaceCraftControl {
 		int result=0;
 		this.coord = coord;
 		this.initial_direction = initial_direction;
-		//System.out.println("Initial Direction:" + command[0]);
+		
+		//add all commands to the vector array
 		for(i=0;i<command.length;i++) {
 			commands.add(command[i]);
 		}
 		
+		//print initial coordinates
 		System.out.println("Initial Coordinates: [" + coord[0] +", " + coord[1] +", " + coord[2] + " ]");
 		System.out.println("Initial Direction:" + initial_direction);
 		
+		//iterate through all the input commands
 		for(int j=0;j<commands.size();j++) {
 			
+			//command is to move forward or backward
 			if(commands.get(j).equals('f') || commands.get(j).equals('b')) {
 				if(initial_direction=='E' || initial_direction=='W') {
 					 result =  (commands.get(j).equals('f'))?(++coord[0]):(--coord[0]);
@@ -47,10 +51,11 @@ public class SpaceCraftControl {
 					break;
 				}
 			}
-			
+			//command is to turn upward or downward
 			else if(commands.get(j).equals('u') || commands.get(j).equals('d')) {
 				result =  (commands.get(j).equals('u'))?(initial_direction='U'):(initial_direction='D');
 			}
+			//command is for left turn
 			else if(commands.get(j).equals('l')) {
 
 				if(initial_direction=='N') {
@@ -94,6 +99,7 @@ public class SpaceCraftControl {
 					}
 				}
 			}
+			//command is for right turn
 			else if (commands.get(j).equals('r')) {
 				if(initial_direction=='N') {
 					initial_direction = 'E';
@@ -136,23 +142,29 @@ public class SpaceCraftControl {
 					}
 				}
 			 }	
+			//print intermediate steps
 			System.out.println(commands.get(j) + ": [" + coord[0] +", " + coord[1] +", " + coord[2] + " ] - " + initial_direction);
+			//store previous direction if next direction is U/D
 			if(initial_direction!='U' && initial_direction!='D') {
 				temp_direction = initial_direction;
 			}
 			
 		}
 		
+		//check for coordinates within galatic boundries(257 to -257)
 		if(coord[0]< -256 || coord[0]>256 || coord[1]< -256 || coord[1] > 256 || coord[2]< -256 || coord[2] > 256) {
 			System.out.println("out of galactic boundries");
 			return Arrays.asList("out of bound");
 		}
+		
+		//print final coordinates
 		System.out.println("Final Coordinates: [" + coord[0] +", " + coord[1] +", " + coord[2] + " ]");
 		System.out.println("Final Direction:" + initial_direction+"\n--------------------------");
+		//return final coordinates to test case
 		return Arrays.asList(coord[0],coord[1],coord[2], initial_direction);
 	}
 	
-	//scientist input
+	//scientist input for initial coordinates
 	public  int[] enterCoordinates(int x, int y, int z) {
 	coord[0] = x;
 	coord[1] = y;
@@ -161,11 +173,13 @@ public class SpaceCraftControl {
 	return coord;
 	}
 
+	//scientist input for initial direction
 	public  char initialDirection(String direction) {
 	initial_direction = direction.toUpperCase().charAt(0);
 	return initial_direction;
 	}
 
+	//scientist input for commands
 	public Object commands(String str) {
 	commands.add(str.charAt(0));
 	//System.out.println(i + " " + commands.get(i));
