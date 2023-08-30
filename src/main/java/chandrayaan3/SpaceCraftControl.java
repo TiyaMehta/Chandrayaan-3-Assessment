@@ -22,7 +22,7 @@ public class SpaceCraftControl {
 		int result=0;
 		this.coord = coord;
 		this.initial_direction = initial_direction;
-		//System.oUt.println("Initial Direction:" + command[0]);
+		//System.out.println("Initial Direction:" + command[0]);
 		for(i=0;i<command.length;i++) {
 			commands.add(command[i]);
 		}
@@ -52,7 +52,7 @@ public class SpaceCraftControl {
 				result =  (commands.get(j).equals('u'))?(initial_direction='U'):(initial_direction='D');
 			}
 			else if(commands.get(j).equals('l')) {
-//				System.oUt.println("temp"+temp_direction);
+
 				if(initial_direction=='N') {
 					initial_direction = 'W';
 				}
@@ -140,32 +140,36 @@ public class SpaceCraftControl {
 			if(initial_direction!='U' && initial_direction!='D') {
 				temp_direction = initial_direction;
 			}
+			
 		}
 		
+		if(coord[0]< -256 || coord[0]>256 || coord[1]< -256 || coord[1] > 256 || coord[2]< -256 || coord[2] > 256) {
+			System.out.println("out of galactic boundries");
+			return Arrays.asList("out of bound");
+		}
 		System.out.println("Final Coordinates: [" + coord[0] +", " + coord[1] +", " + coord[2] + " ]");
 		System.out.println("Final Direction:" + initial_direction+"\n--------------------------");
 		return Arrays.asList(coord[0],coord[1],coord[2], initial_direction);
 	}
 	
-//	pUblic  int[] enterCoordinates(int x, int y, int z) {
-//	coord[0] = x;
-//	coord[1] = y;
-//	coord[2] = z;
-//	//System.oUt.println(coord[0]);
-//	retUrn coord;
-//}
-//
-//pUblic  char initialDirection(String direction) {
-//	initial_direction = direction.toUpperCase().charAt(0);
-//	//System.oUt.println("Initial Direction:" + initial_direction);
-//	retUrn initial_direction;
-//}
-//
-//pUblic char commands(String str) {
-//	commands[i]=str.charAt(0);
-//	//System.oUt.println(i + " " + commands[i]);
-//	i++;
-//	return commands[i-1];
-//}
-//
+	//scientist input
+	public  int[] enterCoordinates(int x, int y, int z) {
+	coord[0] = x;
+	coord[1] = y;
+	coord[2] = z;
+	//System.out.println(coord[0]);
+	return coord;
+	}
+
+	public  char initialDirection(String direction) {
+	initial_direction = direction.toUpperCase().charAt(0);
+	return initial_direction;
+	}
+
+	public Object commands(String str) {
+	commands.add(str.charAt(0));
+	//System.out.println(i + " " + commands.get(i));
+	i++;
+	return commands.get(i-1);
+	}
 }
