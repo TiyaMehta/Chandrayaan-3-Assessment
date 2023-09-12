@@ -147,8 +147,7 @@ public class SpaceCraftControl {
 			//store previous direction if next direction is U/D
 			if(initial_direction!='U' && initial_direction!='D') {
 				temp_direction = initial_direction;
-			}
-			
+			}	
 		}
 		
 		//check for coordinates within galatic boundries(257 to -257)
